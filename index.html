@@ -19,6 +19,9 @@
   <title>Two-Player Snake Game</title>
 </head>
 <body>
+  <label for="timeInput">Set Game Time (seconds): </label>
+  <input type="number" id="timeInput" value="180">
+  <button onclick="startGame()">Set Time</button>
   <canvas id="snakeCanvas" width="400" height="400"></canvas>
 
   <script>
@@ -51,7 +54,7 @@
 
     let food = { x: 10, y: 10 };
     let gameStartTime;
-    const gameDuration = 180000; // 3 minutes in milliseconds
+    let gameDuration = 180000; // 3 minutes in milliseconds
 
     function drawSnake(player) {
       ctx.fillStyle = player.color;
@@ -164,6 +167,12 @@
       gameStartTime = null;
     }
 
+    function startGame() {
+      const timeInput = document.getElementById("timeInput");
+      gameDuration = parseInt(timeInput.value) * 1000; // Convert seconds to milliseconds
+      resetGame();
+    }
+
     // Handle keyboard input
     window.addEventListener("keydown", (event) => {
       handleKeyPress(event, player1);
@@ -202,5 +211,4 @@
     // Run the game loop
     setInterval(updateGame, 100); // Adjust the interval for the game speed
   </script>
-</body>
-</html>
+</
